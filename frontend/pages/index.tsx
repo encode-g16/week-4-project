@@ -4,16 +4,9 @@ import Header from '../components/Header'
 import Image from 'next/image'
 import PictureFrame from '../components/PictureFrame'
 
-interface imageProp {
-  cid: string;
-  created: string;
-  deals: [];
-  files: [];
-  name: string;
-  pin: {};
-  scope: string;
-  size: number;
-  type: string;
+interface imageProps {
+  name: string,
+  image: string
 }
 
 // end = collectionSize from the contract
@@ -25,21 +18,20 @@ function fillRange(start:number, end:number) {
   return arr;
 }
 
-const Home: NextPage = () => {
-  const data = fillRange(1,10);
-  // baseURL = baseURL from the contract
-  const baseURL = "https://nftstorage.link/ipfs/bafybeigoawqimlk6suhfdsxnndy7ix5uvxatyr6dq5hy75k7ytaa2pika4/";
+const Home: NextPage = ({data}: any) => {
+  const collection = fillRange(1,1);
+  console.log(data.image)
   return (
     <div className="flex w-screen flex-col items-center justify-center">
       <Head>
-        <title>Create Next App</title>
+        <title>Group 16 Project</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
       <main className="flex w-screen items-center justify-center px-10 pt-5">
         <div className="grid grid-cols-3 gap-5">
         {
-          data.map((_, i:number) => (<PictureFrame key={`${i+1}`} imgUrl={`${baseURL}${i+1}.jpg`}/>))
+          collection.map((id:number) => (<PictureFrame key={`${id}`} imgUrl={`https://ipfs.io/${data.image}`} id={`${id}`}/>))
         }
         </div>
 
@@ -52,22 +44,17 @@ const Home: NextPage = () => {
   )
 }
 
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const nftStorageApiKey = process.env.NFTSTORAGE_API_KEY;
-//   //fetch NFT metadata
-//   const res = await fetch(`https://api.nft.storage/`, {
-//     method: "GET",
-//     headers: {
-//       "Authorization": `Bearer ${nftStorageApiKey}`
-//     }
-//   });
-//   const data = await res.json();
+export async function getServerSideProps() {
 
-//   console.log(data)
-//   // Pass data to the page via props
-//   return { props: { data } }
-// }
+  //fetch NFT metadata
+  const res = await fetch(`http://localhost:8000/nfts/metadata/1`, {
+    method: "GET"
+  });
+  const data = await res.json();
+  console.log(data);
+  // Pass data to the page via props
+  return { props: { data } }
+}
 
 export default Home
 
