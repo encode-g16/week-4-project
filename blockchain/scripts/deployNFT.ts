@@ -3,18 +3,10 @@ import "dotenv/config";
 import * as NFTJson from "../artifacts/contracts/NFT.sol/NFT.json";
 import { args, getRopstenProvider, getWallet } from "../config/index";
 
-function convertStringArrayToBytes32(array: string[]) {
-    const bytes32Array = [];
-    for (let index = 0; index < array.length; index++) {
-        bytes32Array.push(ethers.utils.formatBytes32String(array[index]));
-    }
-    return bytes32Array;
-}
-
-/**
- * Example command:
- * yarn ts-node --files scripts/deployBallot.ts --ta 0x4337785FcD690BaA3C6C151B1b80747423683aBD -p cheese -p ham -p onions
- */
+/*
+* Run like this, passing in baseURI as a cmd line parameter:
+* yarn ts-node --files scripts/deployNFT.ts --buri ipfs/QmWDpqdbWobAfC1jE924dRsiz7q99BUJr2GnqtyuCjumCB
+*/
 async function main() {
     const wallet = getWallet();
     const baseURI = args.baseURI;
@@ -28,21 +20,31 @@ async function main() {
     if (balance < 0.01) {
         throw new Error("Not enough ether");
     }
-    console.log("Deploying NFT contract");
+    console.log("Deploying NFT contract...");
 
     const NFTFactory = new ethers.ContractFactory(
         NFTJson.abi,
         NFTJson.bytecode,
         signer
     );
-    console.log(`Deploying NFT contract with  tokenAddress=${args.tokenAddress}`);
+
     const NFTContract = await NFTFactory.deploy(baseURI, COLLECTION_SIZE);
     console.log("Awaiting confirmations");
     await NFTContract.deployed();
     console.log("Completed");
     console.log(`Contract deployed at ${NFTContract.address}`);
-    console.log(`Now minting ${COLLECTION_SIZE} tokens`);
-    // TO DO *******************************************************
+    console.log(`Transaction hash ${NFTContract.deployTransaction.hash}`);
+    console.log(`Now minting ${COLLECTION_SIZE} tokens to deployer...`);
+
+    for (let i = 1; i <= COLLECTION_SIZE; i++) {
+        const tx = await NFTContract.mint();
+        const receipt = tx.wait(1);
+        console.log(
+            `Minted ${COLLECTION_SIZE} tokens to ${wallet.address}, Hash: ${receipt.transactionHash}`
+        );
+    }
+    console.log("Completed");
+    console.log("********************************************************");
 }
 
 main().catch((error) => {
