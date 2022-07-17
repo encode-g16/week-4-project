@@ -18,26 +18,26 @@ type Args = {
  * Sensible defaults can be provided through environment variables.
  *
  * run any script with args imported with the --help flag to print out helpful documentation. Eg:
- *  $ yarn ts-node --files scripts/deployBallot.ts --help
- *  Options:
- *     --help                      Show help                            [boolean]
- *     --version                   Show version number                  [boolean]
- *     --token-address, --ta       The address of the token contract     [string]
- *     --ballot-address, --ba      The address of the ballot contract    [string]
- * -p, --proposal                  Add proposal                           [array]
- *     --mint-to, --mt             Address to mint tokens to              [array]
- *     --delegate-to, --dt         Address to delegate votes to           [array]
- *     --signer-private-key, --pk  Private key of the signer - default can be
- *                                 defined by the PRIVATE_KEY environment
- *                                 variable                               string]
- * -m, --signer-mnemonic           Mnemonic of the signer - default can be
- *                                 defined by the MNEMONIC environment variable
- *                                                                       [string]
- *     --ropsten-url, --rurl       The ropsten URL - default can be defined by
- *                                 the ROPSTEN_URL environment variable  [string]
- *     --infura-api-key, --ikey    Infura API key - default can be defined by the
- *                                 INFURA_API_KEY environment variable   [string]
+ *  $ yarn ts-node --files scripts/deployNFT.ts --help
+ * Options:
+      --help                      Show help                            [boolean]
+      --version                   Show version number                  [boolean]
+      --token-address, --ta       The address of the token contract     [string]
+      --baseURI, --buri           The NFT contract Base URI             [string]
+      --mint-to, --mt             Address to mint tokens to              [array]
+      --signer-private-key, --pk  Private key of the signer - default can be
+                                  defined by the PRIVATE_KEY environment
+                                  variable                              [string]
+  -m, --signer-mnemonic           Mnemonic of the signer - default can be
+                                  defined by the MNEMONIC environment variable
+                                                                        [string]
+      --ropsten-url, --rurl       The ropsten URL - default can be defined by
+                                  the ROPSTEN_URL environment variable
+                                                                        [string]
+      --infura-api-key, --ikey    Infura API key - default can be defined by the
+                                  INFURA_API_KEY environment variable   [string]
  */
+
 export const args = yargs(hideBin(process.argv))
     .option("token-address", {
         alias: "ta",
@@ -46,7 +46,7 @@ export const args = yargs(hideBin(process.argv))
         description: "The address of the token contract",
     })
     .option("baseURI", {
-        alias: "uri",
+        alias: "buri",
         type: "string",
         description: "The NFT contract Base URI",
     })

@@ -31,6 +31,7 @@ contract NFT is ERC721 {
      * @dev tokenURI is declared in ERC721 contract, and will be initialized by _tokenURI
      */
     function mint() public returns(uint) {
+        require(_tokenIds.current() <= collectionSize, "collection size too large, cant mint more tokens");
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         
