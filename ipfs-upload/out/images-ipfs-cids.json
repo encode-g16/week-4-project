@@ -1,0 +1,57 @@
+[
+  {
+    "path": "bulbasaur.png",
+    "cid": "QmS7q5Zev6Ed6c8ognVwtNXgTEDacgaPoLzCT1FXBhwJu4",
+    "size": 212265
+  },
+  {
+    "path": "cat.png",
+    "cid": "QmVbcWamupwx3vDd1R26pf6svDKYrSqsMX6h3H8eGrKPEp",
+    "size": 224586
+  },
+  {
+    "path": "caterpillar.png",
+    "cid": "QmSC1iPXdw29aoTVfjDCb6VE3ncDeKnzCtz33EkUdeXk9Q",
+    "size": 62805
+  },
+  {
+    "path": "charmander.png",
+    "cid": "QmNb2NbAuwd7x8pYpwfYLGJSxK7UZE491StqerFnzHcjLT",
+    "size": 28016
+  },
+  {
+    "path": "dino.png",
+    "cid": "Qmc9sjuagr1owo2ZLieSpu8SMFKC6phm31hSoCV387nxQH",
+    "size": 229451
+  },
+  {
+    "path": "foxy.png",
+    "cid": "QmNsGApw3q2UDpC6n3sefoZ2R9YjfCphShYnR1dD4BMKWn",
+    "size": 248120
+  },
+  {
+    "path": "mew.png",
+    "cid": "QmRk6P2EvQ2Z9wBQ8tZbqnfuibmaJ7rtHqjrJqTMY1DjWf",
+    "size": 361737
+  },
+  {
+    "path": "pikachu.png",
+    "cid": "QmPPfCwQFiDugVJrtNMTSnpYqMEX2K3rmGd85srSin97qs",
+    "size": 23152
+  },
+  {
+    "path": "snorlax.png",
+    "cid": "QmeLQHoBC9ZMBrfmaBMqWg8hsMu8g7f7ErzkgawxGHh3BH",
+    "size": 158709
+  },
+  {
+    "path": "squirtle.png",
+    "cid": "QmXiQ2WiBG8omyro86acP3h3EgixwPkofjQqjjkpTYqtht",
+    "size": 659519
+  },
+  {
+    "path": "",
+    "cid": "QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn",
+    "size": 2208910
+  }
+]

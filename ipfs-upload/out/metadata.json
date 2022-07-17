@@ -1,0 +1,42 @@
+[
+  {
+    "name": "bulbasaur",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/bulbasaur.png"
+  },
+  {
+    "name": "cat",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/cat.png"
+  },
+  {
+    "name": "caterpillar",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/caterpillar.png"
+  },
+  {
+    "name": "charmander",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/charmander.png"
+  },
+  {
+    "name": "dino",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/dino.png"
+  },
+  {
+    "name": "foxy",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/foxy.png"
+  },
+  {
+    "name": "mew",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/mew.png"
+  },
+  {
+    "name": "pikachu",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/pikachu.png"
+  },
+  {
+    "name": "snorlax",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/snorlax.png"
+  },
+  {
+    "name": "squirtle",
+    "image": "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/squirtle.png"
+  }
+]
