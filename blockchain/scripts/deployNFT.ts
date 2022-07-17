@@ -2,6 +2,8 @@ import { ethers } from "ethers";
 import "dotenv/config";
 import * as NFTJson from "../artifacts/contracts/NFT.sol/NFT.json";
 import { args, getRopstenProvider, getWallet } from "../config/index";
+const { run } = require("hardhat");
+
 
 /*
 * Run like this, passing in baseURI as a cmd line parameter:
@@ -38,12 +40,12 @@ async function main() {
 
     for (let i = 1; i <= COLLECTION_SIZE; i++) {
         const tx = await NFTContract.mint();
-        const receipt = tx.wait(1);
+        const receipt = await tx.wait(1);
         console.log(
-            `Minted ${COLLECTION_SIZE} tokens to ${wallet.address}, Hash: ${receipt.transactionHash}`
+            `Minted an NFT to ${wallet.address}, Hash: ${receipt.transactionHash}`
         );
     }
-    console.log("Completed");
+    console.log("All NFTs minted.");
     console.log("********************************************************");
 }
 
