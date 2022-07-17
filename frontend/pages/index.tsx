@@ -20,7 +20,6 @@ function fillRange(start:number, end:number) {
 
 const Home: NextPage = ({data}: any) => {
   const collection = fillRange(1,1);
-  console.log(data.image)
   return (
     <div className="flex w-screen flex-col items-center justify-center">
       <Head>
@@ -51,7 +50,6 @@ export async function getServerSideProps() {
     method: "GET"
   });
   const data = await res.json();
-  console.log(data);
   // Pass data to the page via props
   return { props: { data } }
 }
