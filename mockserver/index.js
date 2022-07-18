@@ -1,19 +1,17 @@
-const express = require('express')
+const express = require("express");
 
-const app = express()
+const app = express();
+const cors = require("cors");
 
+app.use(cors());
 
 app.get("/nfts/metadata/:id", (req, res) => {
-
   res.json({
     name: "bulbasaur",
-    image: "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/bulbasaur.png"
-  })
-})
-
-
-
+    image: "/ipfs/QmPz2aAtDzTL4mvWGyENUJyWxyyBWMGPq4qZN5VvYQysmn/bulbasaur.png",
+  });
+});
 
 app.listen(8000, () => {
-    console.log("listening on port 8000")
-})
+  console.log("listening on port 8000");
+});

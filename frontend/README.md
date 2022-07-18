@@ -17,29 +17,19 @@
 npx create-next-app --example nft-showroom with-tailwindcss-app
 
 ```
-### Use NFT Storage to Store and Retrieve Images from IPFS
+### Retrieve Image and Name from Endpoint
 
-2. Register an account with <a href="https://nft.storage">NFT.storage</a>
-   
-3. Get the API key to allow for uploading and retrieving data. Store API key in .env file (``.env.example`` file provided)
-
-4. Retrieve API data
+2. Retrieve API data
 
 ```
 export async function getServerSideProps() {
-  // Fetch data from external API
-  const nftStorageApiKey = process.env.NFTSTORAGE_API_KEY;
-  
+
   //fetch NFT metadata
-  const res = await fetch(`https://api.nft.storage/`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${nftStorageApiKey}`
-    }
+  const res = await fetch(`http://localhost:8000/nfts/metadata/1`, {
+    method: "GET"
   });
-  
   const data = await res.json();
-  
+  console.log(data);
   // Pass data to the page via props
   return { props: { data } }
 }
@@ -47,28 +37,47 @@ export async function getServerSideProps() {
 ```
 ### Display on Frontend
 
-5. Display data on the frontend
+3. Display data on the frontend
 
 ```
 <div className="grid grid-cols-3 gap-5">
-    {
-        data.map((_, i:number) => (<PictureFrame key={`${i+1}`} imgUrl={`${baseURL}${i+1}.jpg`}/>))
-    }
+  {
+    collection.map((id:number) => (<PictureFrame key={`${id}`} imgUrl={`https://ipfs.io/${data.image}`} id={`${id}`}/>))
+  }
 </div>
 
 ```
 
 * PictureFrame Component
 ```
-const PictureFrame = ({imgUrl}: PictureFrameProp) => {
+const PictureFrame = ({ imgUrl, id }: PictureFrameProp) => {
+    console.log(imgUrl);
     return (
         <div className="border-solid border-red-500 my-5 mx-5 rounded-md h-[400px] overflow-hidden shadow-lg shadow-slate-800">
-            <img src={imgUrl} alt="beach holiday" className="object-cover w-full h-full"/>
+            <Link href={`/${id}`}><img src={imgUrl} alt="beach holiday" className="object-cover w-full h-full" /></Link>
         </div>
     );
 }
 ```
 
-6. Run ``npm run dev`` to view the frontend
+4. Display Individual NFT page using NextJS dynamic routing & Reusable Component
+
+```
+export default function HeroImage(props: JsonMetada) {
+    return (
+        <div className="flex flex-col" >
+            <div className="border-solid border-red-500 my-5 mx-5 rounded-md h-[400px] overflow-hidden shadow-lg shadow-slate-800">
+                <img src={`https://ipfs.io/${props.image}`} alt="beach holiday" className="object-cover w-full h-full" />
+            </div>
+            <div>
+                <h2 className="heading-2 text-center"> {props.name}</h2>
+            </div>
+        </div>
+
+    )
+}
+```
+
+5. Run ``npm run dev`` to view the frontend
 
 <img src="/frontend.png" alt="frontend">
