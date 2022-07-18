@@ -21,35 +21,50 @@ app.use(express.json());
 
 app.get('/nfts/metadata/:id', async (req, res) => {
     const tokenId = req.params.id;
-    const tokenIdInt = parseInt(tokenId, 10);
-    if (isNaN(tokenIdInt)) {
-        res.sendStatus(400).send(`id provided ${tokenId} is not a number`);
-        return;
+    try {
+        const tokenIdInt = parseInt(tokenId, 10);
+        if (isNaN(tokenIdInt)) {
+            res.sendStatus(400).send(`id provided ${tokenId} is not a number`);
+            return;
+        }
+    
+        const tokenUri = await contractClient.tokenURI(parseInt(tokenId, 10));
+        const metadata = await ipfsClient.getContent(tokenUri);
+        res.contentType('application/json').send(metadata);
+    } catch(err) {
+        console.log(`error calling ===> /nfts/metadata/${tokenId}`, err)
+        res.status(500).send(err.message)
     }
-
-    const tokenUri = await contractClient.tokenURI(parseInt(tokenId, 10));
-    const metadata = await ipfsClient.getContent(tokenUri);
-    res.contentType('application/json').send(metadata);
 });
 
 app.get('/nfts/metadata', async (req, res) => {
-    const tokenUris = await contractClient.listTokenURIs();
+    try {
+        const tokenUris = await contractClient.listTokenURIs();
 
-    console.log('GOT URIS:', tokenUris);
-
-    const metadataList = await ipfsClient.listContent(tokenUris);
-
-    const results = [];
-    metadataList.forEach((md) => {
-        results.push(JSON.parse(md.toString('utf8')));
-    });
-    res.contentType('application/json').send({ results });
+        console.log('GOT URIS:', tokenUris);
+    
+        const metadataList = await ipfsClient.listContent(tokenUris);
+    
+        const results = [];
+        metadataList.forEach((md) => {
+            results.push(JSON.parse(md.toString('utf8')));
+        });
+        res.contentType('application/json').send({ results });
+    } catch(err) {
+        console.log("error calling ===> /nfts/metadata", err)
+        res.status(500).send(err.message)
+    }
 });
 
 app.get('/nfts/images', async (req, res) => {
     const uri = req.query.uri as string;
-    const imageBuffer = await ipfsClient.getContent(uri);
-    res.contentType('image/png').send(imageBuffer);
+    try {
+        const imageBuffer = await ipfsClient.getContent(uri);
+        res.contentType('image/png').send(imageBuffer);
+    } catch(err) {
+        console.log(`error calling ===> /nfts/image?uri=${uri}`, err)
+        res.status(500).send(err.message)
+    }
 });
 
 app.listen(8000, () => {
