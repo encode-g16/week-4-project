@@ -39,4 +39,4 @@ export async function getServerSideProps() {
 5. Make sure ipfs is connected (``ipfs daemon``) and api server is running (``yarn start`` from api folder) 
 * Run ``yarn dev`` to start localhost and display images on the frontend
 
-<img src="/frontend.png" alt="frontend">
+<img src="./frontend.png" alt="frontend">
