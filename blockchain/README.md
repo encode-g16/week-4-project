@@ -15,7 +15,7 @@ Ensure you fill in the parameters in `env.example` and rename this file `.env`
 Pass in the base URI directory path (perhaps using IPFS as below) as a command line paramenter using the `--buri` flag e.g:
 
 ```
-yarn ts-node --files scripts/deployNFT.ts --buri ipfs/QmWDpqdbWobAfC1jE924dRsiz7q99BUJr2GnqtyuCjumCB
+yarn ts-node --files scripts/deployNFT.ts --buri /ipfs/QmWDpqdbWobAfC1jE924dRsiz7q99BUJr2GnqtyuCjumCB
 ```
 
 The contract will apend an increasing tokenId to this base URI to provide the token specific meta data URI.
