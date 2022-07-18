@@ -4,4 +4,6 @@
 
 2. add `.env` file with `NFT_CONTRACT_ADDRESS`
 
-3. run `yarn start` this will start server on port 8000
+3. make sure ipfs daemon is running by running `ipfs daemon`
+
+4. run `yarn start` this will start server on port 8000
