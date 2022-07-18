@@ -20,7 +20,7 @@ const Home: NextPage = ({ data }: any) => {
       <main className="flex w-screen items-center justify-center px-10 pt-5">
         <div className="grid grid-cols-3 gap-5">
           {
-            data.map((nft: imageProps, i: number) => (<PictureFrame key={`${i}`} imgUrl={`http://localhost:8000/nfts/images?uri=${nft.image}`} id={`${i + 1}`} />))
+            data.results.map((nft: imageProps, i: number) => (<PictureFrame key={`${i}`} imgUrl={`http://localhost:8000/nfts/images?uri=${nft.image}`} id={`${i + 1}`} />))
           }
         </div>
 
