@@ -9,17 +9,7 @@ interface imageProps {
   image: string
 }
 
-// end = collectionSize from the contract
-function fillRange(start:number, end:number) {
-  let arr = [];
-  for (let i = start; i <= end; i++) {
-    arr.push(i);
-  }
-  return arr;
-}
-
-const Home: NextPage = ({data}: any) => {
-  const collection = fillRange(1,1);
+const Home: NextPage = ({ data }: any) => {
   return (
     <div className="flex w-screen flex-col items-center justify-center">
       <Head>
@@ -29,15 +19,15 @@ const Home: NextPage = ({data}: any) => {
       <Header />
       <main className="flex w-screen items-center justify-center px-10 pt-5">
         <div className="grid grid-cols-3 gap-5">
-        {
-          collection.map((id:number) => (<PictureFrame key={`${id}`} imgUrl={`https://ipfs.io/${data.image}`} id={`${id}`}/>))
-        }
+          {
+            data.map((nft: imageProps, i: number) => (<PictureFrame key={`${i}`} imgUrl={`http://localhost:8000/nfts/images?uri=${nft.image}`} id={`${i + 1}`} />))
+          }
         </div>
 
       </main>
 
       <footer className="flex h-24 w-screen items-center justify-center">
-        
+
       </footer>
     </div>
   )
@@ -46,7 +36,7 @@ const Home: NextPage = ({data}: any) => {
 export async function getServerSideProps() {
 
   //fetch NFT metadata
-  const res = await fetch(`http://localhost:8000/nfts/metadata/1`, {
+  const res = await fetch(`http://localhost:8000/nfts/metadata`, {
     method: "GET"
   });
   const data = await res.json();
