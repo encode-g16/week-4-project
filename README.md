@@ -15,3 +15,11 @@ The frontend allows a user to view the NFTs as a list or individually.
 3. Run instructions found in `./api` to start the backend API.
 
 4. Run instructions found in `./frontend` to start the frontend, and then go to `http://localhost:3000` to view the app.
+
+## App List View
+
+![ListView](images/app-list-view.jpg)
+
+## App Single View
+
+![SingleView](images/app-single-view.png)
