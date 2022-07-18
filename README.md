@@ -18,7 +18,7 @@ The frontend allows a user to view the NFTs as a list or individually.
 
 ## App List View
 
-![ListView](images/app-list-view.jpg)
+![ListView](images/app-list-view.png)
 
 ## App Single View
 
